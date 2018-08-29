@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+ <configuration>
+    <!-- 配置连接数据库的四要素-->
+
+    <properties resource="jdbc.properties"></properties>
+    <settings>
+        <!--打开延迟加载的开关  -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--将积极加载改为消极加载及按需加载  -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <typeAliases>
+        <package name="frame_mybaris.pojo"/>
+    </typeAliases>
+    <!--<settings>-->
+        <!--<setting name="logImpl" value="LOG4J"/>-->
+    <!--</settings>-->
+    <!--设置mybatis运行环境 default默认运行环境是environment节点中的id  -->
+    <environments default="mysql">
+        <!--设置事务管理   后续ssm整合就交给Spring去管理-->
+        <environment id="mysql">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="ProvincialMapper.xml"/>
+    </mappers>
+</configuration>

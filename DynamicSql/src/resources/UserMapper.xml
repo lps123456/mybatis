@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="frame_mybaris.dao.UserMapper">
+
+
+    <select id="findUserByCondtion" resultType="User" parameterType="User">
+        SELECT id,userName,passWords FROM news_userinfo
+        <where>
+            <if test="userName!=null and userName!=''">
+                and userName LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="passWords!=null and passWords!=''">
+                and passWords=#{passWords}
+        </if>
+        </where>
+    </select>
+
+
+
+    <select id="findUserByCondtiontirm" resultType="User" parameterType="User">
+        SELECT id,userName,passWords FROM news_userinfo
+          <trim prefix="where" prefixOverrides="and | or">
+            <if test="userName!=null and userName!=''">
+                and userName LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="passWords!=null and passWords!=''">
+                and passWords=#{passWords}
+            </if>
+          </trim>
+    </select>
+
+
+    <update id="updateuserById" parameterType="User">
+        UPDATE news_userinfo
+        <set>
+            <if test="userName !=null and userName!=''">
+                userName=#{userName},
+            </if>
+            <if test="passWords !=null and passWords!=''">
+                passWords=#{passWords}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <select id="selectByChoose" parameterType="User">
+        select id,userName,passWords FROM news_userinfo
+        <where>
+            <choose>
+                <when test="userName!=null and userName!=''">
+                    and userName like concat('%',#{userName},'%')
+                </when>
+                <when test="passWords!=null and passWords!=''">
+                    and passWords=#{passWords}
+                </when>
+                <otherwise>
+                    id=#{id}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+
+<!--数组-->
+    <select id="selectArrayById" resultMap="UserMap">
+        <include refid="cols"/>
+        <where>
+            <if test="array.length>0">
+                id IN
+              <foreach collection="array" open="(" close=")" separator="," item="myid">
+                  #{myid}
+              </foreach>
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectlistById" resultMap="UserMap">
+        <include refid="cols"/>
+        <where>
+            <if test="list.size>0">
+                id in
+                <foreach collection="array" open="(" close=")" separator="," item="myid">
+                    #{myid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectlistUser" resultMap="UserMap">
+        <include refid="cols"/>
+        <where>
+            <if test="list.size>0">
+                id in
+                <foreach collection="array" open="(" close=")" separator="," item="myid">
+                    #{myid.id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+<select id="selectlistUsermap" resultMap="UserMap">
+    <include refid="cols"/>
+    <where>
+        <if test="mymap.keys.size>0">
+            id in
+            <foreach collection="mymap.keys" open="(" close=")" separator="," item="mykeys">
+                #{mymap[${mykeys}]}
+            </foreach>
+        </if>
+    </where>
+</select>
+
+    <select id="selectlistUsermapTwo" resultMap="UserMap">
+        <include refid="cols"/>
+        <where>
+            id in
+            <if test="mymap.keys.size>0">
+                <foreach collection="mymap.keys" open="(" close=")" separator="," item="mykeys">
+                    #{mymap[${mykeys}].id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+    <resultMap id="UserMap" type="User">
+        <id column="id" property="id"></id>
+        <result property="userName" column="userName"/>
+        <result column="passWords" property="passWords"/>
+    </resultMap>
+    <sql id="cols">
+        select id,userName,passwords from news_userinfo</sql>
+
+</mapper>

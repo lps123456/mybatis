@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="frame_mybaris.dao.UserMapper">
+<!--新增操作-->
+<insert id="addUser" parameterType="frame_mybaris.pojo.User">
+<selectKey resultType="int" keyProperty="id" order="AFTER">
+    SELECT  LAST_INSERT_ID()
+</selectKey>
+INSERT INTO news_userinfo(userName,passWords) VALUES( #{userName},#{passWords})
+</insert>
+    <!--删除-->
+    <delete id="delectUser" >
+        delete from news_userinfo where id=#{xx}
+    </delete>
+    <!--修改-->
+    <update id="updateUser" parameterType="User">
+   UPDATE news_userinfo SET userName=#{userName},passWords=#{passWords} WHERE id='25'
+    </update>
+
+    <select id="findUserById" resultMap="UserMap">
+        SELECT id,name,passwords FROM news_userinfo WHERE id=#{id}
+    </select>
+    
+    <select id="findAll" resultMap="UserMap">
+       <include refid="cols"/>
+
+    </select>
+    <!--多条件查询
+    1.使用索引
+    -->
+
+    <select id="findOneByTwo" resultMap="UserMap">
+        <include refid="cols"/>
+        WHERE  'name'=#{myName} AND 'passWords'=#{mypwd}
+    </select>
+    <resultMap id="UserMap" type="UserMap">
+        <id property="id" column="id"></id>
+        <result property="userName" column="name"/>
+        <result property="passWords" column="passwords"/>
+    </resultMap>
+    <!--sql片段-->
+
+    <sql id="cols">
+  select id,name,passwords,email,userType from news_userinfo</sql>
+</mapper>

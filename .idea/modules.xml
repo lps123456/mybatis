@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DynamicSql/DynamicSql.iml" filepath="$PROJECT_DIR$/DynamicSql/DynamicSql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ManyTwoMany/ManyTwoMany.iml" filepath="$PROJECT_DIR$/ManyTwoMany/ManyTwoMany.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RelationalMapping/RelationalMapping.iml" filepath="$PROJECT_DIR$/RelationalMapping/RelationalMapping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RelationalMapping_Two/RelationalMapping_Two.iml" filepath="$PROJECT_DIR$/RelationalMapping_Two/RelationalMapping_Two.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SelfConnection/SelfConnection.iml" filepath="$PROJECT_DIR$/SelfConnection/SelfConnection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cache/cache.iml" filepath="$PROJECT_DIR$/cache/cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis.iml" filepath="$PROJECT_DIR$/mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_login/mybatis_login.iml" filepath="$PROJECT_DIR$/mybatis_login/mybatis_login.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisdemo1/mybatisdemo1.iml" filepath="$PROJECT_DIR$/mybatisdemo1/mybatisdemo1.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="frame_mybaris.dao.CacheMapper">
+<!--导入开启二级缓存语句-->
+   <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="selectStudentFandAll" resultMap="Student">
+        SELECT sid,sname FROM student
+        <where>
+            sid=#{xxx}
+        </where>
+    </select>
+
+    <!-- 验证增删改 对 一级缓存的影响  flushCache="false" 新增清空缓存-->
+    <insert id="firstCacheAdd" flushCache="false" parameterType="Student">
+         INSERT INTO student(sname) VALUES(#{sname})
+    </insert>
+
+    <select id="pagehelper" resultMap="Student">
+        SELECT sid,sname FROM student
+    </select>
+
+    <!--&lt;!&ndash; 验证增删改 对 二级缓存的影响  flushCache="false" 新增不刷新缓存&ndash;&gt;-->
+    <!--<insert id="cacheSecondAdd" flushCache="false" parameterType="Student">-->
+       <!--INSERT INTO student(sid,sname) VALUES(#{sid},#{sname})-->
+    <!--</insert>-->
+    
+    <resultMap id="Student" type="Student">
+        <id column="sid" property="sid" />
+        <result property="sname" column="sname"/>
+    </resultMap>
+
+
+    <!--调用存储过程-->
+    <select id="selectnameByProcedure" statementType="CALLABLE" useCache="false" >
+
+        <![CDATA[
+     call myProc(
+      #{sId,mode=IN,jdbcType=INTEGER},
+     #{sname,mode,OUT,jdbcType=VARCHAR}
+       )
+          ]]]>
+    </select>
+
+
+</mapper>

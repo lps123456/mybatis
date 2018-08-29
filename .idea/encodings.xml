@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DynamicSql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ManyTwoMany" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RelationalMapping" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RelationalMapping_Two" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SelfConnection" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cache" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis_login" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatisdemo1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatisdemo1/src/main/java/frame_mybaris/dao/UserMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatisdemo1/src/main/java/frame_mybaris/pojo/User.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="frame_mybaris.dao.CountryMapper">
+    <!--不可以用作延迟加载-->
+<!--<select id="selectCountryById" resultMap="countryMap">-->
+    <!--SELECT cid,cname,pname FROM country,provincial-->
+    <!--WHERE   country.cid=provincial.countryid-->
+    <!--AND cid=#{sss}-->
+<!--</select>-->
+
+    <select id="selectCountryById" resultMap="countryMap">
+        SELECT cid,cname FROM country
+        WHERE cid=#{sss}
+    </select>
+
+    <select id="selectProvincialByCid" resultType="Provincial">
+        SELECT pid,pname FROM Provincial
+        WHERE countryid=#{sss}
+    </select>
+
+<resultMap id="countryMap" type="Country">
+<id property="id" column="cid"></id>
+<result property="cName" column="cname"/>
+    <!--不可以用作延迟加载-->
+    <!--<collection property="provincials" ofType="Provincial" >-->
+        <!--<id column="pid" property="pid"></id>-->
+        <!--<result column="pid" property="pid"></result>-->
+    <!--</collection>-->
+
+    <!--延迟加载-->
+    <collection property="provincials" ofType="Provincial" select="selectProvincialByCid" column="cid"></collection>
+</resultMap>
+
+    <!--sql片段-->
+<sql id="cols">
+select id,name,passwords,email,userType from news_userinfo</sql>
+</mapper>
